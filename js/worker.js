@@ -1,16 +1,19 @@
 const calcFib = (n) => {
-    if (n <= 1) return 1
-    return calcFib(n - 1) * n
-}
-
-onmessage = function(e) {
-  console.log('Worker: Message received from main script');
-  const result = e.data[0] * e.data[1];
-  if (isNaN(result)) {
-    postMessage('Please write two numbers');
-  } else {
-    const workerResult = 'Result: ' + result;
-    console.log('Worker: Posting message back to main script');
-    postMessage(workerResult);
+  let n1 = 1;
+  let n2 = 1;
+  if (n === 0) return n;
+  if (n <= 1) return n1;
+  while (n > 1) {
+    let temp = n1;
+    n1 = n2;
+    n2 = temp + n2;
+    n--;
   }
-}
+  return n1;
+};
+
+onmessage = function (e) {
+  console.log(`Worker: Message received from main script ${e.data}`);
+  const res = calcFib(1000000000);
+  postMessage(res);
+};
