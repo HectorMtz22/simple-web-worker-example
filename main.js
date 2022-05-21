@@ -1,13 +1,16 @@
 const number = document.querySelector("#number");
 const buttonCalc = document.querySelector("#calc");
-const myWorker = new Worker("worker.js");
 
-buttonCalc.addEventListener("click", working);
+if (window.Worker) {
+  const myWorker = new Worker("worker.js");
 
-function working() {
-  myWorker.postMessage("aver");
+  buttonCalc.addEventListener("click", working);
+
+  function working() {
+    myWorker.postMessage("aver");
+  }
+
+  myWorker.onmessage = function (e) {
+    number.innerHTML = e.data;
+  };
 }
-
-myWorker.onmessage = function (e) {
-  number.innerHTML = e.data;
-};
