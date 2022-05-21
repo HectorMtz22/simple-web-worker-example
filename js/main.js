@@ -1,6 +1,6 @@
 const number = document.querySelector("#number");
 const buttonCalc = document.querySelector("#calc");
-const myWorker = new Worker(document.URL + "js/worker.js");
+const myWorker = new Worker("/js/worker.js");
 
 buttonCalc.addEventListener("click", working);
 

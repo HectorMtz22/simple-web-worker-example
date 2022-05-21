@@ -14,6 +14,7 @@ const calcFib = (n) => {
 
 onmessage = function (e) {
   console.log(`Worker: Message received from main script ${e.data}`);
+  this.postMessage("Cargando");
   const res = calcFib(1000000000);
   postMessage(res);
 };
